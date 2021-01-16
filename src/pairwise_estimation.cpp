@@ -499,4 +499,15 @@ RcppExport SEXP pairwise_rf_estimation_prob(SEXP m_R,
   delete [] G;
   return(out);
 }
+
+RcppExport SEXP pairwise_rf_estimation_matrix(SEXP m_R,
+                                              SEXP mrk_pairs_R,
+                                              SEXP geno_R,
+                                              SEXP dP_R,
+                                              SEXP dQ_R,
+                                              SEXP count_cache_R,
+                                              SEXP tol_R)
+  {
+  
+  }
 //end of file two_pts_est.cpp

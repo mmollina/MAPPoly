@@ -362,13 +362,31 @@ paralell_pairwise_probability <- function(mrk.pairs,
   return(lapply(res, format_rf))
 }
 
-
-
-
-
-
-
-
+#' Wrapper function to discrete-based pairwise two-point estimation in C++
+#' This function returns the most likely linkage phase configuration
+#'
+#' @param void internal function to be documented
+#' @keywords internal
+#' @export
+paralell_pairwise_matrix <- function(mrk.pairs,
+                                     input.seq,
+                                     geno,
+                                     dP,
+                                     dQ,
+                                     count.cache,
+                                     tol = .Machine$double.eps^0.25)
+{
+  res <- .Call("pairwise_rf_estimation_disc",
+               input.seq$m,
+               as.matrix(mrk.pairs),
+               as.matrix(geno),
+               as.vector(dP),
+               as.vector(dQ),
+               count.cache$cond,
+               tol = tol,
+               PACKAGE = "mappoly")
+  return(res)
+}
 
 #' Format results from pairwise two-point estimation in C++
 #'
